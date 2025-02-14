@@ -1,0 +1,44 @@
+package com.pages;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+ 
+public class BasePage extends LoginPage {
+	//giving annotation as @FindBy
+	@FindBy(xpath = "//div[normalize-space()='Menu']")
+	private WebElement Menu_Button;
+	
+	@FindBy(xpath = "//a[normalize-space()='Painting & Cleaning']")
+	private WebElement PaintingAndCleaning;
+	
+	
+	@FindBy(xpath = "//img[@alt='Mumbai']")
+	private WebElement DropDownCity;
+	
+	
+	@FindBy(xpath = "(//div[@class='h-3p w-3p relative'])[5]")
+	private WebElement Select_Electrician_Option;
+	
+	
+	public BasePage(WebDriver drv) {
+		super(drv);
+		this.drv = drv;
+		PageFactory.initElements(drv, this);
+	}
+ 
+ 
+	public void base_page() throws InterruptedException {
+		Menu_Button.click();
+		Thread.sleep(2000);
+		PaintingAndCleaning.click();
+		Thread.sleep(3000);
+		DropDownCity.click();
+		Thread.sleep(2000);
+		Select_Electrician_Option.click();
+		Thread.sleep(2000);
+
+
+		
+	}
+}

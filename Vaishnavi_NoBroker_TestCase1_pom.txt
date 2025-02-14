@@ -1,0 +1,84 @@
+//Created by - Vaishnavi Jayant Boravake
+// Created on - 13-02-2025
+//Evaluated by - 
+package com.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+public class PlumbingSelection {
+	//selection of plumbing option
+	
+		@FindBy(xpath ="(//div[@class='rounded-full h-14 w-14'])[1]")
+		private WebElement Select_Plumbing;
+		
+		//selection of Tap and mixer
+		@FindBy(xpath = "//div[contains(@class,'hs-service-name-clr')][normalize-space()='Tap & Mixer']")
+		private WebElement Select_TapAndMixer;
+		
+		//selection of Add things
+		@FindBy(xpath = "//body//div[@id='PLUMBING_REPAIR_TAP']//div[@class='relative bg-center bg-cover rounded-xl']//div")
+		private WebElement Add_Things;
+		
+		//selection of Proceed
+		@FindBy(xpath="//button[@class='btn btn-default btn-block']")
+		private WebElement Proceed;
+	     
+		//selection of month
+		@FindBy(xpath = "//span[@class='opacity-70']")
+		private WebElement SelectMonth;
+		
+		//selection of Date
+		@FindBy(xpath="//button[contains(text(),'Next month')]")
+		private WebElement PickDate;
+		
+		@FindBy(xpath="//div[@aria-label='day-31']")
+		private WebElement SelectionOfDate;
+		
+		//assert value
+		@FindBy(xpath = "//h1[contains(text(),'Plumbing')]")
+		private WebElement plumbingPageHeader;
+
+		@FindBy(xpath = "(//div[@class='flex justify-between w-full']//div//div[@id='PLUMBING_INSTALLATION_TAP']")
+		private WebElement tapMixerHeader;
+		
+		//@FindBy(xpath="//div[contains(text(),'Total Amount')]")
+		//private WebElement totalAmount;
+		
+		//@FindBy(xpath="//div[@class='font-bold text-22']")
+		//private WebElement scheduleService;
+		
+	
+		private WebDriver driver;
+		
+		public PlumbingSelection(WebDriver webdriver) {
+			this.driver = webdriver;
+			PageFactory.initElements(webdriver, this);
+		}
+		
+		public void choosePlumbingService() {
+			
+			Select_Plumbing.click();
+			String expectedheader = "Best Plumbing Services in Mumbai";
+			Assert.assertEquals(plumbingPageHeader.getText(),expectedheader);
+			
+			Select_TapAndMixer.click();
+			//String tap_installation_header = "Tap Installation";
+			//Assert.assertEquals(tapMixerHeader.getText(),tap_installation_header);
+			
+			Add_Things.click();
+			//String total_amount_header = "Total Amount";
+			//Assert.assertEquals(totalAmount.getText(),total_amount_header);
+			
+			Proceed.click();
+			//String schedule_service_header = "Schedule your Service";
+			//Assert.assertEquals(scheduleService.getText(),schedule_service_header);
+			
+			SelectMonth.click();
+			PickDate.click();
+			SelectionOfDate.click();
+		}
+}
